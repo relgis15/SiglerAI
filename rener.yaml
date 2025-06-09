@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: flowise-backend
+    env: docker
+    plan: starter
+    region: oregon
+    branch: main
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: DATABASE_PATH
+        value: /data/flowise.sqlite
+      - key: FLOWISE_USERNAME
+        value: admin
+      - key: FLOWISE_PASSWORD
+        value: yoursecurepassword
+
+    disk:
+      name: flowise-data
+      mountPath: /data
+      sizeGB: 1
